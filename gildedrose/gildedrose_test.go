@@ -61,6 +61,11 @@ func Test_Item_Quality_Gildedrose(t *testing.T) {
 			args:     []*gildedrose.Item{{"Aged Brie", 0, 50}},
 			expected: 50,
 		},
+		{
+			name:     "Update quality execution should decrease Conjurados items x2 faster as other regular item",
+			args:     []*gildedrose.Item{{"Conjurados", 10, 10}},
+			expected: 8,
+		},
 	}
 
 	for _, test := range quality_tests {
