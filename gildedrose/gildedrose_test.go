@@ -26,4 +26,13 @@ func Test_Gildedrose(t *testing.T) {
 		gildedrose.UpdateQuality(items)
 		assert.Equal(t, 9, items[0].Quality)
 	})
+
+	t.Run("Update quality execution should decrease items Quality value 2x faster after sell date has passed", func(t *testing.T) {
+
+		var items = []*gildedrose.Item{
+			{"foo", 0, 10},
+		}
+		gildedrose.UpdateQuality(items)
+		assert.Equal(t, 8, items[0].Quality)
+	})
 }
