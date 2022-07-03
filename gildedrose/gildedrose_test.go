@@ -1,19 +1,20 @@
 package gildedrose_test
 
 import (
+	"github.com/stretchr/testify/assert"
 	"testing"
 
 	"github.com/emilybache/gildedrose-refactoring-kata/gildedrose"
 )
 
-func Test_Foo(t *testing.T) {
-	var items = []*gildedrose.Item{
-		{"foo", 0, 0},
-	}
+func Test_Gildedrose(t *testing.T) {
 
-	gildedrose.UpdateQuality(items)
+	t.Run("Update quality execution should decrease items SellIn value", func(t *testing.T) {
 
-	if items[0].Name != "fixme" {
-		t.Errorf("Name: Expected %s but got %s ", "fixme", items[0].Name)
-	}
+		var items = []*gildedrose.Item{
+			{"foo", 10, 10},
+		}
+		gildedrose.UpdateQuality(items)
+		assert.Equal(t, 9, items[0].SellIn)
+	})
 }
