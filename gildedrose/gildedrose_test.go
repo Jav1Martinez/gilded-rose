@@ -70,3 +70,16 @@ func Test_Item_Quality_Gildedrose(t *testing.T) {
 		})
 	}
 }
+
+func Test_Item_SellIn_Quality_Gildadrose(t *testing.T) {
+
+	t.Run("Update quality execution should not modify any value of Sulfuras items", func(t *testing.T) {
+
+		var items = []*gildedrose.Item{
+			{"Sulfuras, Hand of Ragnaros", 10, 80},
+		}
+		gildedrose.UpdateQuality(items)
+		assert.Equal(t, 10, items[0].SellIn)
+		assert.Equal(t, 80, items[0].Quality)
+	})
+}
