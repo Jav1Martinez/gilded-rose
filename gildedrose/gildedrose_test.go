@@ -44,4 +44,13 @@ func Test_Gildedrose(t *testing.T) {
 		gildedrose.UpdateQuality(items)
 		assert.Equal(t, 0, items[0].Quality)
 	})
+
+	t.Run("Update quality execution should increase Aged Brie quality in 1 point by day if SellIn is higher than 0", func(t *testing.T) {
+
+		var items = []*gildedrose.Item{
+			{"Aged Brie", 1, 10},
+		}
+		gildedrose.UpdateQuality(items)
+		assert.Equal(t, 11, items[0].Quality)
+	})
 }
