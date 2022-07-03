@@ -82,4 +82,34 @@ func Test_Item_SellIn_Quality_Gildadrose(t *testing.T) {
 		assert.Equal(t, 10, items[0].SellIn)
 		assert.Equal(t, 80, items[0].Quality)
 	})
+
+	t.Run("Update quality execution should increase Backstage quality value x2 when sellIn is between 6 and 10", func(t *testing.T) {
+
+		var items = []*gildedrose.Item{
+			{"Backstage passes to a TAFKAL80ETC concert", 10, 10},
+		}
+		gildedrose.UpdateQuality(items)
+		assert.Equal(t, 9, items[0].SellIn)
+		assert.Equal(t, 12, items[0].Quality)
+	})
+
+	t.Run("Update quality execution should increase Backstage quality value x3 when sellIn is between 1 and 5", func(t *testing.T) {
+
+		var items = []*gildedrose.Item{
+			{"Backstage passes to a TAFKAL80ETC concert", 5, 10},
+		}
+		gildedrose.UpdateQuality(items)
+		assert.Equal(t, 4, items[0].SellIn)
+		assert.Equal(t, 13, items[0].Quality)
+	})
+
+	t.Run("Update quality execution should decrease Backstage quality value to 0 when sellIn is 0 or lower", func(t *testing.T) {
+
+		var items = []*gildedrose.Item{
+			{"Backstage passes to a TAFKAL80ETC concert", 0, 10},
+		}
+		gildedrose.UpdateQuality(items)
+		assert.Equal(t, -1, items[0].SellIn)
+		assert.Equal(t, 0, items[0].Quality)
+	})
 }
